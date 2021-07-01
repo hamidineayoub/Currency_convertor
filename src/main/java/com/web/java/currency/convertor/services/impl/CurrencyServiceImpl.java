@@ -38,6 +38,9 @@ public class CurrencyServiceImpl implements CurrencyService {
     @Override
     public ResponseEntity calculate(CurrencyRateRequest request) {
         try {
+            if (request.getTarget().isBlank() || request.getSource().isBlank()) {
+                return new ResponseEntity(new ErrorResponse("Target/Source are required"), HttpStatus.BAD_REQUEST);
+            }
             ResponseEntity<ExchangeRateResponse> response = getExchangeRate(request.getSource(), request.getTarget());
             ExchangeRateResponse body = response.getBody();
             double rate = body.getRates().get(request.getTarget());
@@ -48,8 +51,7 @@ public class CurrencyServiceImpl implements CurrencyService {
             return new ResponseEntity(new ErrorResponse("Source Currency '" + request.getSource() + "' is invalid"), HttpStatus.BAD_REQUEST);
         } catch (InvalidTargetCurrencyException e) {
             return new ResponseEntity(new ErrorResponse("Target Currency '" + request.getTarget() + "' is invalid"), HttpStatus.BAD_REQUEST);
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
