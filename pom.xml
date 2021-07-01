@@ -34,6 +34,11 @@
             <optional>true</optional>
         </dependency>
         <dependency>
+            <groupId>io.github.sercasti</groupId>
+            <artifactId>spring-httpserver-timings</artifactId>
+            <version>0.0.5</version>
+        </dependency>
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
