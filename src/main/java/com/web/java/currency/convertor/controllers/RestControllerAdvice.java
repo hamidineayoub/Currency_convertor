@@ -24,7 +24,7 @@ public class RestControllerAdvice {
         errorInfo.put("httpCode", HttpStatus.NOT_FOUND.value());
         errorInfo.put("httpStatus", HttpStatus.NOT_FOUND.getReasonPhrase());
         errorInfo.put("errorMessage", e.getMessage());
-        errorInfo.put("info","exist only one end point GET /languages/list");
+        errorInfo.put("info","exist only one end point POST /calculate");
         return new ResponseEntity(errorInfo, HttpStatus.NOT_FOUND);
     }
 
